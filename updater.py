@@ -6,14 +6,13 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-SLEEP_TIME = 3600 # in seconds
+SLEEP_TIME = int(os.getenv("SLEEP_TIME")) # in seconds
 
 def update_route53():
     # Your domain
     IP = get('https://checkip.amazonaws.com/').content.decode('utf8')
     IP = IP.split('\n')[0]
     subprocess.run(["echo", "My IP is: ",str(IP)])
-    IP = "3.68.27.66"
     DOMAINS = json.loads(os.getenv("DOMAINS"))
     ZONE_IDS = json.loads(os.getenv("ZONE_IDS"))
     RECORD_SETS = json.loads(os.getenv("RECORD_SETS"))
