@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  awsdnsupdater:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workapp
+    restart: always
