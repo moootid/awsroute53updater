@@ -13,14 +13,12 @@ def update_route53():
     IP = get('https://checkip.amazonaws.com/').content.decode('utf8')
     IP = IP.split('\n')[0]
     subprocess.run(["echo", "My IP is: ",str(IP)])
-    DOMAINS = json.loads(os.getenv("DOMAINS"))
     ZONE_IDS = json.loads(os.getenv("ZONE_IDS"))
     RECORD_SETS = json.loads(os.getenv("RECORD_SETS"))
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-    if (len(DOMAINS) == len(ZONE_IDS) == len(RECORD_SETS)):
-        for i in range(len(DOMAINS)):
-            DOMAIN = DOMAINS[i]
+    if (len(ZONE_IDS) == len(RECORD_SETS)):
+        for i in range(len(ZONE_IDS)):
             ZONE_ID = ZONE_IDS[i]
             RECORD_SET = RECORD_SETS[i]
             DATA = {
