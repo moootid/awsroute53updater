@@ -2,9 +2,16 @@ version: '3.8'
 
 services:
   awsdnsupdate:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: lazem/awsroute53updater:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     volumes:
       - .:/workapp
     restart: always
+    environment:
+      ZONE_IDS: ${ZONE_IDS}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      RECORD_SETS: ${RECORD_SETS}
+      SLEEP_TIME: ${SLEEP_TIME}
