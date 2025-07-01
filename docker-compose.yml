@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   awsdnsupdate:
-    image: lazem/awsroute53updater:latest
+    image: moootid/awsroute53updater:latest
     # build:
     #   context: .
     #   dockerfile: Dockerfile
